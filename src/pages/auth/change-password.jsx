@@ -266,7 +266,7 @@ export default function ChangePasswordPage() {
             </div>
 
             <Link
-              href="/login"
+              href="/auth/login"
               className="block w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium rounded-lg text-center transition duration-150"
             >
               Daxil olun

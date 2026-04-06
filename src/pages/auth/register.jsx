@@ -285,7 +285,7 @@ export default function RegisterPage() {
         {/* Login link */}
         <p className="text-center text-sm text-gray-500 mt-5">
           Artıq hesabınız var?{" "}
-          <Link href="/login" className="text-emerald-600 font-medium hover:underline">
+          <Link href="/auth/login" className="text-emerald-600 font-medium hover:underline">
             Daxil olun
           </Link>
         </p>

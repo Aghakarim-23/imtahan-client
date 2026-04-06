@@ -130,7 +130,7 @@ export default function LoginPage() {
               />
               Məni xatırla
             </label>
-            <Link href="/forgot-password" className="text-sm text-emerald-600 font-medium hover:underline">
+            <Link href="/auth/forgot-password" className="text-sm text-emerald-600 font-medium hover:underline">
               Şifrəni unutmusunuz?
             </Link>
           </div>
@@ -152,7 +152,7 @@ export default function LoginPage() {
         {/* Register link */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Hesabınız yoxdur?{" "}
-          <Link href="/register" className="text-emerald-600 font-medium hover:underline">
+          <Link href="/auth/register" className="text-emerald-600 font-medium hover:underline">
             Qeydiyyatdan keçin
           </Link>
         </p>
