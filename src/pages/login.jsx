@@ -130,7 +130,7 @@ export default function LoginPage() {
               />
               Məni xatırla
             </label>
-            <Link href="#" className="text-sm text-emerald-600 font-medium hover:underline">
+            <Link href="/forgot-password" className="text-sm text-emerald-600 font-medium hover:underline">
               Şifrəni unutmusunuz?
             </Link>
           </div>
