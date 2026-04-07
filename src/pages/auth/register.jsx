@@ -12,7 +12,7 @@ export default function RegisterPage() {
     email: "",
     password: "",
   });
-  const [terms, setTerms] = useState(false);
+  
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -24,31 +24,10 @@ export default function RegisterPage() {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const getStrength = (password) => {
-    let score = 0;
-    if (password.length >= 8) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[^A-Za-z0-9]/.test(password)) score++;
-    return score;
-  };
 
-  const strengthLabels = ["", "Zəif", "Orta", "Güclü", "Çox güclü"];
-  const strengthColors = ["", "#E24B4A", "#EF9F27", "#1D9E75", "#1D9E75"];
-  const strength = getStrength(form.password);
 
-  const validate = () => {
-    const newErrors = {};
-    if (!form.name.trim()) newErrors.name = "Ad tələb olunur";
-    if (!form.surname.trim()) newErrors.surname = "Soyad tələb olunur";
-    if (!form.username.trim()) newErrors.username = "İstifadəçi adı tələb olunur";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      newErrors.email = "Düzgün e-poçt daxil edin";
-    if (!form.password) newErrors.password = "Şifrə tələb olunur";
-    if (!terms) newErrors.terms = "Şərtlərlə razılaşmalısınız";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,17 +39,11 @@ export default function RegisterPage() {
   const inputClass =
     "w-full pl-9 pr-4 py-2.5 text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 focus:bg-white transition";
 
-  const steps = [
-    { num: 1, label: "Şəxsi məlumat", active: true },
-    { num: 2, label: "Giriş məlumatı", active: false },
-    { num: 3, label: "Təsdiq", active: false },
-  ];
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-9 w-full max-w-lg">
 
-        {/* Logo */}
         <div className="flex justify-center mb-6">
           <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
@@ -79,7 +52,6 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        {/* Title */}
         <h1
           className="text-center text-2xl font-semibold text-gray-900 mb-1 tracking-tight"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -88,24 +60,8 @@ export default function RegisterPage() {
         </h1>
         <p className="text-center text-sm text-gray-500 mb-6">Yeni hesab yaradın</p>
 
-        {/* Step indicator */}
-        <div className="flex items-center gap-2 mb-7">
-          {steps.map((step, i) => (
-            <div key={step.num} className="flex items-center gap-2 flex-1">
-              <div className={`flex items-center gap-1.5 text-xs whitespace-nowrap ${step.active ? "text-emerald-600 font-medium" : "text-gray-400"}`}>
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-medium border ${step.active ? "bg-emerald-500 border-emerald-500 text-white" : "border-gray-200 text-gray-400"}`}>
-                  {step.num}
-                </div>
-                {step.label}
-              </div>
-              {i < steps.length - 1 && <div className="flex-1 h-px bg-gray-100" />}
-            </div>
-          ))}
-        </div>
-
         <form onSubmit={handleSubmit} noValidate>
 
-          {/* Name + Surname */}
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div>
               <label htmlFor="name" className="block text-xs font-medium text-gray-500 mb-1.5 tracking-wide uppercase">
@@ -150,7 +106,7 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          {/* Username */}
+          
           <div className="mb-4">
             <label htmlFor="username" className="block text-xs font-medium text-gray-500 mb-1.5 tracking-wide uppercase">
               İstifadəçi adı
@@ -172,7 +128,6 @@ export default function RegisterPage() {
             {errors.username && <p className="text-xs text-red-500 mt-1">{errors.username}</p>}
           </div>
 
-          {/* Email */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-xs font-medium text-gray-500 mb-1.5 tracking-wide uppercase">
               E-poçt ünvanı
@@ -194,7 +149,6 @@ export default function RegisterPage() {
             {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
           </div>
 
-          {/* Password */}
           <div className="mb-4">
             <label htmlFor="password" className="block text-xs font-medium text-gray-500 mb-1.5 tracking-wide uppercase">
               Şifrə
@@ -232,48 +186,9 @@ export default function RegisterPage() {
               </button>
             </div>
 
-            {/* Strength bar */}
-            {form.password && (
-              <div className="mt-2">
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="flex-1 h-1 rounded-full transition-all duration-300"
-                      style={{ background: i <= strength ? strengthColors[strength] : "#e5e7eb" }}
-                    />
-                  ))}
-                </div>
-                <p className="text-xs mt-1" style={{ color: strengthColors[strength] }}>
-                  {strengthLabels[strength]}
-                </p>
-              </div>
-            )}
             {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password}</p>}
           </div>
 
-          {/* Terms */}
-          <div className="flex items-start gap-2 mb-5 mt-1">
-            <input
-              type="checkbox"
-              id="terms"
-              checked={terms}
-              onChange={(e) => {
-                setTerms(e.target.checked);
-                setErrors((prev) => ({ ...prev, terms: "" }));
-              }}
-              className="accent-emerald-500 w-4 h-4 mt-0.5 cursor-pointer flex-shrink-0"
-            />
-            <label htmlFor="terms" className="text-sm text-gray-500 cursor-pointer leading-relaxed">
-              <Link href="#" className="text-emerald-600 font-medium hover:underline">İstifadə şərtləri</Link>{" "}
-              və{" "}
-              <Link href="#" className="text-emerald-600 font-medium hover:underline">Məxfilik siyasəti</Link>{" "}
-              ilə razıyam
-            </label>
-          </div>
-          {errors.terms && <p className="text-xs text-red-500 -mt-3 mb-3">{errors.terms}</p>}
-
-          {/* Submit */}
           <button
             type="submit"
             className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white text-sm font-medium rounded-lg transition duration-150"
@@ -282,7 +197,6 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        {/* Login link */}
         <p className="text-center text-sm text-gray-500 mt-5">
           Artıq hesabınız var?{" "}
           <Link href="/auth/login" className="text-emerald-600 font-medium hover:underline">
@@ -290,15 +204,6 @@ export default function RegisterPage() {
           </Link>
         </p>
 
-        {/* Azerbaijan flag */}
-        <div className="flex items-center justify-center gap-2 mt-5">
-          <div className="flex h-2 w-5 rounded overflow-hidden">
-            <div className="flex-1 bg-[#0092BC]" />
-            <div className="flex-1 bg-[#E8112D]" />
-            <div className="flex-1 bg-[#00AE65]" />
-          </div>
-          <span className="text-xs text-gray-400">Azərbaycan</span>
-        </div>
 
       </div>
     </main>
