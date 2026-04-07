@@ -23,14 +23,6 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 w-full max-w-md">
 
-        <div className="flex justify-center mb-7">
-          <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center">
-            <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
-            </svg>
-          </div>
-        </div>
-
         <h1
           className="text-center text-2xl font-semibold text-gray-900 mb-1 tracking-tight"
           style={{ fontFamily: "'Playfair Display', serif" }}
