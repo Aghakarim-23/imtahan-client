@@ -16,7 +16,6 @@ export default function ForgotPasswordPage() {
       setError("Düzgün e-poçt ünvanı daxil edin.");
       return;
     }
-    // Your password reset logic here (e.g. API call)
     setSent(true);
   };
 
@@ -30,16 +29,7 @@ export default function ForgotPasswordPage() {
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 w-full max-w-md">
 
-        {/* Logo */}
-        <div className="flex justify-center mb-6">
-          <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center">
-            <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
-            </svg>
-          </div>
-        </div>
 
-        {/* Icon */}
         <div className="flex justify-center mb-4">
           <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center">
             <svg className="w-7 h-7 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -49,7 +39,6 @@ export default function ForgotPasswordPage() {
           </div>
         </div>
 
-        {/* Title */}
         <h1
           className="text-center text-2xl font-semibold text-gray-900 mb-1 tracking-tight"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -98,7 +87,7 @@ export default function ForgotPasswordPage() {
           </form>
         ) : (
           <div>
-            {/* Success state */}
+            
             <div className="flex items-start gap-3 bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-5">
               <svg className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -118,7 +107,6 @@ export default function ForgotPasswordPage() {
           </div>
         )}
 
-        {/* Back to login */}
         <div className="flex items-center justify-center gap-1 mt-6 text-sm text-gray-500">
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M19 12H5M12 5l-7 7 7 7" />
@@ -126,16 +114,6 @@ export default function ForgotPasswordPage() {
           <Link href="/auth/login" className="text-emerald-600 font-medium hover:underline">
             Girişə qayıt
           </Link>
-        </div>
-
-        {/* Azerbaijan flag */}
-        <div className="flex items-center justify-center gap-2 mt-5">
-          <div className="flex h-2 w-5 rounded overflow-hidden">
-            <div className="flex-1 bg-[#0092BC]" />
-            <div className="flex-1 bg-[#E8112D]" />
-            <div className="flex-1 bg-[#00AE65]" />
-          </div>
-          <span className="text-xs text-gray-400">Azərbaycan</span>
         </div>
 
       </div>
