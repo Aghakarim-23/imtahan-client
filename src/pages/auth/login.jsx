@@ -7,7 +7,6 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
   const [error, setError] = useState("");
 
   const handleLogin = (e) => {
@@ -17,7 +16,6 @@ export default function LoginPage() {
       setError("Zəhmət olmasa bütün xanaları doldurun.");
       return;
     }
-    // Your auth logic here
     alert("Uğurla daxil oldunuz!");
   };
 
@@ -25,7 +23,6 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 w-full max-w-md">
 
-        {/* Logo */}
         <div className="flex justify-center mb-7">
           <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
@@ -34,7 +31,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Title */}
         <h1
           className="text-center text-2xl font-semibold text-gray-900 mb-1 tracking-tight"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -47,7 +43,6 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} noValidate>
 
-          {/* Email */}
           <div className="mb-5">
             <label
               htmlFor="email"
@@ -74,7 +69,6 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Password */}
           <div className="mb-4">
             <label
               htmlFor="password"
@@ -119,28 +113,17 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Remember me & Forgot password */}
-          <div className="flex items-center justify-between mb-6">
-            <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={remember}
-                onChange={(e) => setRemember(e.target.checked)}
-                className="accent-emerald-500 w-4 h-4 cursor-pointer"
-              />
-              Məni xatırla
-            </label>
+          <div className="flex items-center justify-end mb-6">
+        
             <Link href="/auth/forgot-password" className="text-sm text-emerald-600 font-medium hover:underline">
               Şifrəni unutmusunuz?
             </Link>
           </div>
 
-          {/* Error message */}
           {error && (
             <p className="text-sm text-red-500 mb-4 text-center">{error}</p>
           )}
 
-          {/* Submit */}
           <button
             type="submit"
             className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white text-sm font-medium rounded-lg transition duration-150"
@@ -149,23 +132,12 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Register link */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Hesabınız yoxdur?{" "}
           <Link href="/auth/register" className="text-emerald-600 font-medium hover:underline">
             Qeydiyyatdan keçin
           </Link>
         </p>
-
-        {/* Azerbaijan flag badge */}
-        <div className="flex items-center justify-center gap-2 mt-6">
-          <div className="flex h-2 w-5 rounded overflow-hidden">
-            <div className="flex-1 bg-[#0092BC]" />
-            <div className="flex-1 bg-[#E8112D]" />
-            <div className="flex-1 bg-[#00AE65]" />
-          </div>
-          <span className="text-xs text-gray-400">Azərbaycan</span>
-        </div>
 
       </div>
     </main>
