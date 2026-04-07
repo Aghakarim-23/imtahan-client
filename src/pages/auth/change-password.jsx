@@ -54,7 +54,6 @@ export default function ChangePasswordPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
-    // Your change password logic here (e.g. API call)
     setSuccess(true);
   };
 
@@ -78,16 +77,7 @@ export default function ChangePasswordPage() {
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 w-full max-w-md">
 
-        {/* Logo */}
-        <div className="flex justify-center mb-6">
-          <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center">
-            <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
-            </svg>
-          </div>
-        </div>
 
-        {/* Lock icon */}
         <div className="flex justify-center mb-4">
           <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center">
             <svg className="w-7 h-7 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -97,7 +87,6 @@ export default function ChangePasswordPage() {
           </div>
         </div>
 
-        {/* Title */}
         <h1
           className="text-center text-2xl font-semibold text-gray-900 mb-1 tracking-tight"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -111,7 +100,6 @@ export default function ChangePasswordPage() {
         {!success ? (
           <form onSubmit={handleSubmit} noValidate>
 
-            {/* Current password */}
             <div className="mb-4">
               <label
                 htmlFor="current"
@@ -147,7 +135,6 @@ export default function ChangePasswordPage() {
               {errors.current && <p className="text-xs text-red-500 mt-1">{errors.current}</p>}
             </div>
 
-            {/* New password */}
             <div className="mb-4">
               <label
                 htmlFor="newPassword"
@@ -181,27 +168,8 @@ export default function ChangePasswordPage() {
                 </button>
               </div>
 
-              {/* Strength bar */}
-              {form.newPassword && (
-                <div className="mt-2">
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="flex-1 h-1 rounded-full transition-all duration-300"
-                        style={{ background: i <= strength ? strengthColors[strength] : "#e5e7eb" }}
-                      />
-                    ))}
-                  </div>
-                  <p className="text-xs mt-1" style={{ color: strengthColors[strength] }}>
-                    {strengthLabels[strength]}
-                  </p>
-                </div>
-              )}
-              {errors.newPassword && <p className="text-xs text-red-500 mt-1">{errors.newPassword}</p>}
             </div>
 
-            {/* Confirm password */}
             <div className="mb-6">
               <label
                 htmlFor="confirm"
@@ -234,6 +202,7 @@ export default function ChangePasswordPage() {
                   <EyeIcon visible={show.confirm} />
                 </button>
               </div>
+              
               {/* Match indicator */}
               {form.confirm && form.newPassword && (
                 <p className={`text-xs mt-1 ${form.newPassword === form.confirm ? "text-emerald-600" : "text-red-500"}`}>
@@ -286,15 +255,6 @@ export default function ChangePasswordPage() {
           </div>
         )}
 
-        {/* Azerbaijan flag */}
-        <div className="flex items-center justify-center gap-2 mt-5">
-          <div className="flex h-2 w-5 rounded overflow-hidden">
-            <div className="flex-1 bg-[#0092BC]" />
-            <div className="flex-1 bg-[#E8112D]" />
-            <div className="flex-1 bg-[#00AE65]" />
-          </div>
-          <span className="text-xs text-gray-400">Azərbaycan</span>
-        </div>
 
       </div>
     </main>

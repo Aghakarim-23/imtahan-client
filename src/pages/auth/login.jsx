@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import api from "../../utils/axios";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,20 +11,31 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     if (!email || !password) {
       setError("Zəhmət olmasa bütün xanaları doldurun.");
       return;
     }
-    alert("Uğurla daxil oldunuz!");
+
+    try {
+      const response = await api.post("/api/auth/login", { email, password });
+      toast.success(response.data.message || "Giriş uğurlu oldu!");
+    } catch (error) {
+      console.error("Login error:", error);
+      // setError(error.response?.data?.message || "Giriş uğursuz oldu. Yenidən cəhd edin.");
+      setError(
+  error.response?.data?.message || 
+  error.response?.data?.error || 
+  "Giriş uğursuz oldu. Yenidən cəhd edin."
+);
+    }
   };
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 w-full max-w-md">
-
         <h1
           className="text-center text-2xl font-semibold text-gray-900 mb-1 tracking-tight"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -34,7 +47,6 @@ export default function LoginPage() {
         </p>
 
         <form onSubmit={handleLogin} noValidate>
-
           <div className="mb-5">
             <label
               htmlFor="email"
@@ -44,7 +56,13 @@ export default function LoginPage() {
             </label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
@@ -70,7 +88,13 @@ export default function LoginPage() {
             </label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
@@ -91,12 +115,24 @@ export default function LoginPage() {
                 aria-label="Şifrəni göstər"
               >
                 {showPassword ? (
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <svg
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
                     <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
                     <line x1="1" y1="1" x2="23" y2="23" />
                   </svg>
                 ) : (
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <svg
+                    className="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                     <circle cx="12" cy="12" r="3" />
                   </svg>
@@ -106,8 +142,10 @@ export default function LoginPage() {
           </div>
 
           <div className="flex items-center justify-end mb-6">
-        
-            <Link href="/auth/forgot-password" className="text-sm text-emerald-600 font-medium hover:underline">
+            <Link
+              href="/auth/forgot-password"
+              className="text-sm text-emerald-600 font-medium hover:underline"
+            >
               Şifrəni unutmusunuz?
             </Link>
           </div>
@@ -126,11 +164,13 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Hesabınız yoxdur?{" "}
-          <Link href="/auth/register" className="text-emerald-600 font-medium hover:underline">
+          <Link
+            href="/auth/register"
+            className="text-emerald-600 font-medium hover:underline"
+          >
             Qeydiyyatdan keçin
           </Link>
         </p>
-
       </div>
     </main>
   );
